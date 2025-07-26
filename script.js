@@ -44,7 +44,7 @@ const questions = [
   { type: "question", text: "Cities should expand pedestrian-only zones and reduce car access downtown.", axis1: 1, axis2: 0 },
   { type: "question", text: "Streets should primarily accommodate cars to support commerce and delivery needs.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "Smart street designs balancing multiple uses and technologies improve urban life.", axis1: 0, axis2: 1 },
-  { type: "question", text: "Urban public spaces decline if too much space is given to non-traditional mobility modes.", axis1: -0.5, axis2: -1 },
+  { type: "question", text: "Too much focus on non-car transportation modes can make public spaces less functional or attractive.", axis1: -0.5, axis2: -1 },
   { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 1, axis2: 0 }
 ];
 
