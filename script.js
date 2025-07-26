@@ -3,7 +3,7 @@ const questions = [
   { type: "statement", text: "Let’s start by considering how the city’s transport should evolve to meet future needs." },
   { type: "question", text: "Cities should prioritise expanding highways and parking to reduce traffic congestion.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "Investment in high-quality public transit networks is essential for future urban mobility.", axis1: 1, axis2: -0.5 },
-  { type: "question", text: "Flexible, on-demand transport services should complement existing transit options.", axis1: 0, axis2: 1 },
+  { type: "question", text: "Zoning laws must be changed to require high-density, transit-accessible development as the only way to build in cities.", axis1: 1, axis2: 0.5 },
   { type: "question", text: "Preserving the existing street layout and avoiding radical redesigns is best for mobility.", axis1: -0.5, axis2: -1 },
   { type: "question", text: "Urban transport planning must actively include cycling and pedestrian infrastructure development.", axis1: 1, axis2: 0 },
 
@@ -13,11 +13,11 @@ const questions = [
   { type: "question", text: "Technological advances in vehicle emissions reduction mean no need to limit private car use.", axis1: -1, axis2: 1 },
   { type: "question", text: "Public transit should adopt clean energy solutions even if costs rise temporarily.", axis1: 1, axis2: 1 },
   { type: "question", text: "The current transport system is sufficient; focusing on user behavior is more important than infrastructure changes.", axis1: 0, axis2: -1 },
-  { type: "question", text: "Cities should prioritise green spaces over new transport infrastructure, even if it reduces road capacity.", axis1: 0.5, axis2: 0 },
+  { type: "question", text: "Congestion pricing or low emission zone pricing are effective ways to improve air quality and manage traffic.", axis1: 1, axis2: 0.5 },
 
   // Theme 3 – Technology and Innovation in Mobility
   { type: "statement", text: "Now, a few ideas about new technology and innovation in urban mobility." },
-  { type: "question", text: "Autonomous vehicles will significantly improve traffic flow and safety.", axis1: 0, axis2: 1 },
+  { type: "question", text: "Electric vehicles are a key part of future urban mobility and can reduce pollution without limiting car use.", axis1: -0.5, axis2: 1 },
   { type: "question", text: "Micromobility options (like e-scooters and bike shares) are key to solving first-/last-mile issues.", axis1: 1, axis2: 1 },
   { type: "question", text: "Traditional bus and rail systems remain more reliable than emerging mobility technologies.", axis1: 1, axis2: -1 },
   { type: "question", text: "Ride-sharing services increase congestion and should be limited.", axis1: -0.5, axis2: -0.5 },
@@ -42,7 +42,7 @@ const questions = [
   // Theme 6 – Urban Lifestyle and Public Space
   { type: "statement", text: "Finally, some propositions about how transport fits with life in the city." },
   { type: "question", text: "Cities should expand pedestrian-only zones and reduce car access downtown.", axis1: 1, axis2: 0 },
-  { type: "question", text: "Streets should primarily accommodate cars to support commerce and delivery needs.", axis1: -1, axis2: -0.5 },
+  { type: "question", text: "Managing parking availability is essential to encourage use of public transit and reduce traffic.", axis1: 0.5, axis2: 0 },
   { type: "question", text: "Smart street designs balancing multiple uses and technologies improve urban life.", axis1: 0, axis2: 1 },
   { type: "question", text: "Too much focus on non-car transportation modes can make public spaces less functional or attractive.", axis1: -0.5, axis2: -1 },
   { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 1, axis2: 0 }
