@@ -128,7 +128,45 @@ function scoreSurvey() {
 }
 
 function getInterpretation(x, y) {
-  return `<strong>Your Scores</strong><br>Transit Orientation Score: ${x.toFixed(2)}<br>Innovation Orientation Score: ${y.toFixed(2)}`;
+  let quadrantDescription = "";
+
+  if (x >= 0 && y >= 0) {
+    quadrantDescription = "You are supportive of public transit and open to new tech — showing enthusiasm for modern, sustainable mobility.";
+  } else if (x < 0 && y >= 0) {
+    quadrantDescription = "You prefer private vehicle use but embrace new mobility tech and innovation.";
+  } else if (x < 0 && y < 0) {
+    quadrantDescription = "You favor cars and traditional transport solutions, and are skeptical about change and innovation.";
+  } else if (x >= 0 && y < 0) {
+    quadrantDescription = "You favor public or active transit modes, but with traditional approaches and some caution toward new technologies.";
+  }
+
+  return `
+    <strong>Your Mobility Profile</strong><br>
+    ${quadrantDescription}<br><br>
+    Transit Orientation Score: ${x.toFixed(2)}<br>
+    Innovation Orientation Score: ${y.toFixed(2)}<br><br>
+
+    <hr style="margin: 30px 0;">
+
+    <p><strong>X-Axis:</strong> Private Vehicle-Oriented &lt;&gt; Public/Active Transit-Oriented</p>
+    <p>This axis reflects your general preference for how urban mobility should be prioritized:</p>
+    <ul>
+      <li><strong>Negative end:</strong> A preference for private vehicles, emphasizing personal car use, supporting road infrastructure like highways and parking, and valuing individual convenience and freedom of choice in transportation.</li>
+      <li><strong>Positive end:</strong> A preference for public and active transit modes, including buses, trains, cycling, and walking, prioritizing shared, environmentally friendly, and equitable transport options.</li>
+    </ul>
+
+    <p><strong>Y-Axis:</strong> Status Quo-Oriented &lt;&gt; Innovation Oriented</p>
+    <p>This axis captures your attitude toward change and new solutions in urban mobility:</p>
+    <ul>
+      <li><strong>Negative end:</strong> A Status Quo orientation, favoring established, familiar transportation systems and approaches, cautious about rapid or radical changes, and preferring tried-and-true methods over experimentation.</li>
+      <li><strong>Positive end:</strong> Innovation and Technology Optimism, welcoming new mobility technologies, support for smart city solutions, and a belief that innovation can solve urban transport challenges.</li>
+    </ul>
+
+    <p><strong>How to understand your position:</strong></p>
+    <p>Your position on this chart shows how your views balance between these priorities:</p>
+    <p>For example, being in the <strong>top-right quadrant</strong> reflects a preference for public/active transit combined with excitement about new technology.</p>
+    <p>The <strong>bottom-left quadrant</strong> suggests a stronger preference for private vehicles with a cautious approach toward change.</p>
+  `;
 }
 
 function plotCompass(x, y) {
