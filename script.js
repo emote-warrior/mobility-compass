@@ -144,11 +144,19 @@ function plotCompass(x, y) {
       ]
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false, // Allows CSS height control
       plugins: { legend: { display: false } },
       scales: {
         x: {
           min: -1, max: 1,
-          title: { display: true, text: 'Private Vehicle ←→ Public/Active Transit' },
+          title: {
+            display: true,
+            text: 'Private Vehicle ←→ Public/Active Transit',
+            font: {
+              size: 14 // Slightly increased axis title size
+            }
+          },
           ticks: { stepSize: 0.5 },
           grid: {
             color: '#999',
@@ -157,7 +165,13 @@ function plotCompass(x, y) {
         },
         y: {
           min: -1, max: 1,
-          title: { display: true, text: 'Tradition ←→ Innovation' },
+          title: {
+            display: true,
+            text: 'Tradition ←→ Innovation',
+            font: {
+              size: 14 // Slightly increased axis title size
+            }
+          },
           ticks: { stepSize: 0.5 },
           grid: {
             color: '#999',
