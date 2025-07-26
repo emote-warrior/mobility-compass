@@ -130,6 +130,7 @@ function getInterpretation(x, y) {
 
 function plotCompass(x, y) {
   const ctx = document.getElementById('mobilityChart').getContext('2d');
+
   new Chart(ctx, {
     type: 'scatter',
     data: {
@@ -139,20 +140,6 @@ function plotCompass(x, y) {
           data: [{ x, y }],
           backgroundColor: 'blue',
           pointRadius: 6
-        },
-        {
-          label: 'Quadrants',
-          data: [
-            { x: -0.5, y: -0.5 },
-            { x: 0.5, y: -0.5 },
-            { x: -0.5, y: 0.5 },
-            { x: 0.5, y: 0.5 }
-          ],
-          pointBackgroundColor: ['#ffe6e6', '#e6f3ff', '#e6ffe6', '#fff5e6'],
-          pointRadius: 200,
-          hitRadius: 0,
-          hoverRadius: 0,
-          showLine: false
         }
       ]
     },
