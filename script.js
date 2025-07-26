@@ -214,7 +214,7 @@ function plotCompass(x, y) {
           min: -1, max: 1,
           title: {
             display: true,
-            text: 'Tradition ←→ Innovation',
+            text: 'Status-Quo ←→ Innovation',
             font: {
               size: 14
             }
