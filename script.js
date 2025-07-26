@@ -48,20 +48,25 @@ const questions = [
   { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 1, axis2: 0 }
 ];
 
-const maxAxis1 = questions
-  .filter(q => q.type === "question")
-  .reduce((sum, q) => sum + Math.abs(q.axis1 * 2), 0);
-
-const maxAxis2 = questions
-  .filter(q => q.type === "question")
-  .reduce((sum, q) => sum + Math.abs(q.axis2 * 2), 0);
+const maxAxis1 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis1 * 2), 0);
+const maxAxis2 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis2 * 2), 0);
 
 const form = document.getElementById("surveyForm");
 const resultsDiv = document.getElementById("results");
 const interpretationEl = document.getElementById("interpretation");
+const progressBar = document.getElementById("progress-bar");
+const errorBox = document.getElementById("error-box");
 
 function renderQuestions() {
   let questionIndex = 0;
+  const scaleLabels = [
+    "Strongly Disagree",
+    "Disagree",
+    "Neutral",
+    "Agree",
+    "Strongly Agree"
+  ];
+
   questions.forEach((item) => {
     const div = document.createElement("div");
     div.className = "question";
@@ -71,9 +76,10 @@ function renderQuestions() {
     } else if (item.type === "question") {
       div.innerHTML = `<p><strong>Q${questionIndex + 1}:</strong> ${item.text}</p>
         <div class="likert">
-          ${[1,2,3,4,5].map(value => `
+          ${[1, 2, 3, 4, 5].map(value => `
             <label>
-              <input type="radio" name="q${questionIndex}" value="${value}" required> ${value}
+              <input type="radio" name="q${questionIndex}" value="${value}">
+              ${scaleLabels[value - 1]}
             </label>
           `).join('')}
         </div>`;
@@ -82,39 +88,52 @@ function renderQuestions() {
 
     form.appendChild(div);
   });
+
+  // Add change listener for progress tracking
+  document.querySelectorAll('input[type="radio"]').forEach(input => {
+    input.addEventListener('change', updateProgress);
+  });
+}
+
+function updateProgress() {
+  const totalQuestions = questions.filter(q => q.type === "question").length;
+  let answered = 0;
+  for (let i = 0; i < totalQuestions; i++) {
+    if (document.querySelector(`input[name="q${i}"]:checked`)) {
+      answered++;
+    }
+  }
+  const percent = Math.round((answered / totalQuestions) * 100);
+  progressBar.style.width = `${percent}%`;
+  progressBar.innerText = `${percent}%`;
+}
+
+function scoreSurvey() {
+  let sum1 = 0, sum2 = 0, qIndex = 0;
+  questions.forEach((item) => {
+    if (item.type === "question") {
+      const val = parseInt(document.querySelector(`input[name="q${qIndex}"]:checked`).value);
+      const adjusted = val - 3;
+      sum1 += adjusted * item.axis1;
+      sum2 += adjusted * item.axis2;
+      qIndex++;
+    }
+  });
+  return {
+    axis1: sum1 / maxAxis1,
+    axis2: sum2 / maxAxis2
+  };
 }
 
 function getInterpretation(x, y) {
   const horizontal = x > 0 ? "Public/Active Transit-Oriented" : "Private Vehicle-Centric";
   const vertical = y > 0 ? "Innovation-Oriented" : "Tradition-Preferring";
-
   let quadrantLabel = "";
   if (x > 0 && y > 0) quadrantLabel = "Progressive Transit Supporter";
   else if (x < 0 && y > 0) quadrantLabel = "Tech-Savvy Car Advocate";
   else if (x > 0 && y < 0) quadrantLabel = "Traditional Transit Believer";
   else if (x < 0 && y < 0) quadrantLabel = "Conventional Car-Oriented Thinker";
-
   return `You lean toward <strong>${horizontal}</strong> and <strong>${vertical}</strong> mobility thinking.<br><br>Your quadrant: <strong>${quadrantLabel}</strong>`;
-}
-
-function scoreSurvey() {
-  let sum1 = 0, sum2 = 0;
-  let questionIndex = 0;
-
-  questions.forEach((item) => {
-    if (item.type === "question") {
-      const val = parseInt(document.querySelector(`input[name="q${questionIndex}"]:checked`).value);
-      const adjusted = val - 3;
-      sum1 += adjusted * item.axis1;
-      sum2 += adjusted * item.axis2;
-      questionIndex++;
-    }
-  });
-
-  return {
-    axis1: sum1 / maxAxis1,
-    axis2: sum2 / maxAxis2
-  };
 }
 
 function plotCompass(x, y) {
@@ -156,11 +175,12 @@ function plotCompass(x, y) {
 
 document.getElementById("submitBtn").addEventListener("click", function(e) {
   e.preventDefault();
+  errorBox.innerHTML = "";
 
   const totalQuestions = questions.filter(q => q.type === "question").length;
   for (let i = 0; i < totalQuestions; i++) {
     if (!document.querySelector(`input[name="q${i}"]:checked`)) {
-      alert("Please answer all questions before submitting.");
+      errorBox.innerHTML = "Please complete all questions before submitting.";
       return;
     }
   }
