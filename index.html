@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobility Compass</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Mobility Compass</h1>
+    <p>Please respond honestly to the following statements using the scale provided. Your result will appear at the end.</p>
+    
+    <form id="surveyForm"></form>
+
+    <button type="submit" id="submitBtn">See My Result</button>
+
+    <div id="results">
+      <h2>Your Mobility Compass Result</h2>
+      <canvas id="mobilityChart" width="400" height="400"></canvas>
+      <p id="interpretation"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
