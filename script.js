@@ -2,50 +2,50 @@ const questions = [
   // Theme 1 – Vision for City Transport
   { type: "statement", text: "Let’s start by considering how the city’s transport should evolve to meet future needs." },
   { type: "question", text: "Cities should prioritise expanding highways and parking to reduce traffic congestion.", axis1: -1, axis2: -0.5 },
-  { type: "question", text: "Investment in high-quality public transit networks is essential for future urban mobility.", axis1: 1, axis2: -0.5 },
-  { type: "question", text: "Zoning laws must be changed to require high-density, transit-accessible development as the only way to build in cities.", axis1: 1, axis2: 0.5 },
+  { type: "question", text: "Investment decisions should balance public transit and road infrastructure to match city needs.", axis1: 0.5, axis2: -0.5 },
+  { type: "question", text: "Zoning that encourages higher density near transit hubs can reduce car dependence.", axis1: 0.5, axis2: 0.5 },
   { type: "question", text: "Preserving the existing street layout and avoiding radical redesigns is best for mobility.", axis1: -0.5, axis2: -1 },
-  { type: "question", text: "Urban transport planning must actively include cycling and pedestrian infrastructure development.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Maintaining and improving road networks for private vehicles is vital for effective city transport.", axis1: -1, axis2: 0 },
 
-  // Theme 2 – Environmental and Sustainability
+  // Theme 2 – Environmental and Sustainability Considerations
   { type: "statement", text: "Here are some statements about the environment and how transport affects it." },
-  { type: "question", text: "Reducing vehicle emissions is urgent and justifies restricting car use in city centers.", axis1: 1, axis2: 0 },
-  { type: "question", text: "Technological advances in vehicle emissions reduction mean no need to limit private car use.", axis1: -1, axis2: 1 },
-  { type: "question", text: "Public transit should adopt clean energy solutions even if costs rise temporarily.", axis1: 1, axis2: 1 },
+  { type: "question", text: "Reducing emissions is important, but restrictions on car use should consider impacts on personal mobility.", axis1: 0.5, axis2: 0 },
+  { type: "question", text: "Technological advances can reduce car pollution without restricting vehicle access.", axis1: -1, axis2: 0.5 },
+  { type: "question", text: "Public transit should adopt clean energy solutions even if costs rise temporarily.", axis1: 0.5, axis2: 1 },
   { type: "question", text: "The current transport system is sufficient; focusing on user behavior is more important than infrastructure changes.", axis1: 0, axis2: -1 },
-  { type: "question", text: "Congestion pricing or low emission zone pricing are effective ways to improve air quality and manage traffic.", axis1: 1, axis2: 0.5 },
+  { type: "question", text: "Congestion pricing or low emission zones can help manage urban traffic but may affect some commuters disproportionately.", axis1: 0.5, axis2: 0 },
 
   // Theme 3 – Technology and Innovation in Mobility
   { type: "statement", text: "Now, a few ideas about new technology and innovation in urban mobility." },
-  { type: "question", text: "Electric vehicles are a key part of future urban mobility and can reduce pollution without limiting car use.", axis1: -0.5, axis2: 1 },
-  { type: "question", text: "Micromobility options (like e-scooters and bike shares) are key to solving first-/last-mile issues.", axis1: 1, axis2: 1 },
+  { type: "question", text: "Electric vehicles are an important part of future urban mobility, but should not encourage unrestricted car use.", axis1: -0.5, axis2: 0.5 },
+  { type: "question", text: "Micromobility options like e-scooters and bike shares help with last-mile connections but cannot replace cars for all trips.", axis1: 0.5, axis2: 1 },
   { type: "question", text: "Traditional bus and rail systems remain more reliable than emerging mobility technologies.", axis1: 1, axis2: -1 },
-  { type: "question", text: "Ride-sharing services increase congestion and should be limited.", axis1: -0.5, axis2: -0.5 },
-  { type: "question", text: "Smart city technologies managing traffic lights and flows should be widely implemented.", axis1: 0, axis2: 1 },
+  { type: "question", text: "Innovation should also focus on improving personal vehicle technologies rather than replacing cars completely.", axis1: -1, axis2: 1 },
+  { type: "question", text: "Smart city technologies that manage traffic flows should be widely implemented.", axis1: 0, axis2: 1 },
 
   // Theme 4 – Personal Mobility and Convenience
   { type: "statement", text: "Next, please tell us your thoughts on your travel preferences and experiences." },
   { type: "question", text: "Having personal access to a private vehicle is essential for daily convenience.", axis1: -1, axis2: 0 },
-  { type: "question", text: "Public transit should be convenient, frequent, and reliable enough to replace car trips.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Public transit should be convenient, frequent, and reliable enough to replace many car trips.", axis1: 0.5, axis2: 0 },
   { type: "question", text: "I am open to using emerging mobility options even if they are new or unfamiliar.", axis1: 0, axis2: 1 },
-  { type: "question", text: "Changes to familiar travel routines reduce convenience and should be minimized.", axis1: -0.5, axis2: -1 },
-  { type: "question", text: "Walking and cycling are enjoyable alternatives to motorised transport when practical.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Changes to familiar travel routines reduce convenience and should be minimised.", axis1: -0.5, axis2: -1 },
+  { type: "question", text: "Owning and using a car remains the most practical choice for many daily commuters.", axis1: -1, axis2: 0 },
 
   // Theme 5 – Equity, Access, and Affordability
   { type: "statement", text: "Let’s look at who should benefit from various mobility options in the city." },
-  { type: "question", text: "Public transit fares should be subsidised to ensure affordability for all residents.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Public transit fares should be subsidised to ensure affordability for all residents.", axis1: 0.5, axis2: 0 },
   { type: "question", text: "Investments should focus on improving private road infrastructure equally for all neighborhoods.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "New mobility technologies should be accessible and affordable, not just premium options.", axis1: 0.5, axis2: 1 },
-  { type: "question", text: "It’s acceptable for premium or luxury transport options to have higher prices.", axis1: -0.5, axis2: 0 },
-  { type: "question", text: "Mobility solutions must prioritise accessibility for people with disabilities and the elderly.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Improving road infrastructure is essential to ensure mobility equity across all neighborhoods.", axis1: -1, axis2: 0 },
+  { type: "question", text: "Mobility solutions must prioritise accessibility for people with disabilities and the elderly.", axis1: 0.5, axis2: 0 },
 
   // Theme 6 – Urban Lifestyle and Public Space
   { type: "statement", text: "Finally, some propositions about how transport fits with life in the city." },
-  { type: "question", text: "Cities should expand pedestrian-only zones and reduce car access downtown.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Cities should expand pedestrian-only zones and reduce car access downtown, while balancing delivery and emergency access.", axis1: 0.5, axis2: 0 },
   { type: "question", text: "Managing parking availability is essential to encourage use of public transit and reduce traffic.", axis1: 0.5, axis2: 0 },
   { type: "question", text: "Smart street designs balancing multiple uses and technologies improve urban life.", axis1: 0, axis2: 1 },
-  { type: "question", text: "Too much focus on non-car transportation modes can make public spaces less functional or attractive.", axis1: -0.5, axis2: -1 },
-  { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 1, axis2: 0 }
+  { type: "question", text: "Street design should balance the needs of cars alongside other transport users to support city commerce.", axis1: -0.5, axis2: -0.5 },
+  { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 0.5, axis2: 0 },
 ];
 
 const form = document.getElementById("surveyForm");
@@ -149,10 +149,10 @@ function getInterpretation(x, y) {
     <hr style="margin: 30px 0;">
 
     <p><strong>X-Axis:</strong> Private Vehicle-Oriented &lt;&gt; Public/Active Transit-Oriented</p>
-    <p>This axis reflects your general preference for how urban mobility should be prioritized:</p>
+    <p>This axis reflects your general preference for how urban mobility should be prioritised:</p>
     <ul>
-      <li><strong>Negative end:</strong> A preference for private vehicles, emphasizing personal car use, supporting road infrastructure like highways and parking, and valuing individual convenience and freedom of choice in transportation.</li>
-      <li><strong>Positive end:</strong> A preference for public and active transit modes, including buses, trains, cycling, and walking, prioritizing shared, environmentally friendly, and equitable transport options.</li>
+      <li><strong>Negative end:</strong> A preference for private vehicles, emphasising personal car use, supporting road infrastructure like highways and parking, and valuing individual convenience and freedom of choice in transportation.</li>
+      <li><strong>Positive end:</strong> A preference for public and active transit modes, including buses, trains, cycling, and walking, prioritising shared, environmentally friendly, and equitable transport options.</li>
     </ul>
 
     <p><strong>Y-Axis:</strong> Status Quo-Oriented &lt;&gt; Innovation Oriented</p>
