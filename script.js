@@ -57,6 +57,9 @@ const errorBox = document.getElementById("error-box");
 const maxAxis1 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis1 * 2), 0);
 const maxAxis2 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis2 * 2), 0);
 
+// Global variable to track chart instance
+let chartInstance = null;
+
 function renderQuestions() {
   let questionIndex = 0;
   const scaleLabels = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"];
@@ -131,7 +134,13 @@ function getInterpretation(x, y) {
 function plotCompass(x, y) {
   const ctx = document.getElementById('mobilityChart').getContext('2d');
 
-  new Chart(ctx, {
+  // Destroy previous chart if it exists
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  // Create new chart and save reference
+  chartInstance = new Chart(ctx, {
     type: 'scatter',
     data: {
       datasets: [
@@ -145,7 +154,7 @@ function plotCompass(x, y) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false, // Allows CSS height control
+      maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
         x: {
@@ -154,7 +163,7 @@ function plotCompass(x, y) {
             display: true,
             text: 'Private Vehicle ←→ Public/Active Transit',
             font: {
-              size: 14 // Slightly increased axis title size
+              size: 14
             }
           },
           ticks: { stepSize: 0.5 },
@@ -169,7 +178,7 @@ function plotCompass(x, y) {
             display: true,
             text: 'Tradition ←→ Innovation',
             font: {
-              size: 14 // Slightly increased axis title size
+              size: 14
             }
           },
           ticks: { stepSize: 0.5 },
