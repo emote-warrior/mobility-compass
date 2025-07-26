@@ -115,3 +115,10 @@ form {
 canvas {
   max-width: 100%;
 }
+
+#mobilityChart {
+  width: 100%;
+  height: 300px;       /* 👈 You can reduce or increase this */
+  max-height: 300px;
+  margin-bottom: 10px; /* Optional: reduces space before score text */
+}
