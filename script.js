@@ -1,7 +1,7 @@
 const questions = [
   // Theme 1 – Vision for City Transport
   { type: "statement", text: "Let’s start by considering how the city’s transport should evolve to meet future needs." },
-  { type: "question", text: "Cities should prioritize expanding highways and parking to reduce traffic congestion.", axis1: -1, axis2: -0.5 },
+  { type: "question", text: "Cities should prioritise expanding highways and parking to reduce traffic congestion.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "Investment in high-quality public transit networks is essential for future urban mobility.", axis1: 1, axis2: -0.5 },
   { type: "question", text: "Flexible, on-demand transport services should complement existing transit options.", axis1: 0, axis2: 1 },
   { type: "question", text: "Preserving the existing street layout and avoiding radical redesigns is best for mobility.", axis1: -0.5, axis2: -1 },
@@ -13,7 +13,7 @@ const questions = [
   { type: "question", text: "Technological advances in vehicle emissions reduction mean no need to limit private car use.", axis1: -1, axis2: 1 },
   { type: "question", text: "Public transit should adopt clean energy solutions even if costs rise temporarily.", axis1: 1, axis2: 1 },
   { type: "question", text: "The current transport system is sufficient; focusing on user behavior is more important than infrastructure changes.", axis1: 0, axis2: -1 },
-  { type: "question", text: "Cities should prioritize green spaces over new transport infrastructure, even if it reduces road capacity.", axis1: 0.5, axis2: 0 },
+  { type: "question", text: "Cities should prioritise green spaces over new transport infrastructure, even if it reduces road capacity.", axis1: 0.5, axis2: 0 },
 
   // Theme 3 – Technology and Innovation in Mobility
   { type: "statement", text: "Now, a few ideas about new technology and innovation in urban mobility." },
@@ -24,20 +24,20 @@ const questions = [
   { type: "question", text: "Smart city technologies managing traffic lights and flows should be widely implemented.", axis1: 0, axis2: 1 },
 
   // Theme 4 – Personal Mobility and Convenience
-  { type: "statement", text: "Next, please tell us your thoughts on your own travel preferences and experiences." },
+  { type: "statement", text: "Next, please tell us your thoughts on your travel preferences and experiences." },
   { type: "question", text: "Having personal access to a private vehicle is essential for daily convenience.", axis1: -1, axis2: 0 },
   { type: "question", text: "Public transit should be convenient, frequent, and reliable enough to replace car trips.", axis1: 1, axis2: 0 },
   { type: "question", text: "I am open to using emerging mobility options even if they are new or unfamiliar.", axis1: 0, axis2: 1 },
   { type: "question", text: "Changes to familiar travel routines reduce convenience and should be minimized.", axis1: -0.5, axis2: -1 },
-  { type: "question", text: "Walking and cycling are enjoyable alternatives to motorized transport when practical.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Walking and cycling are enjoyable alternatives to motorised transport when practical.", axis1: 1, axis2: 0 },
 
   // Theme 5 – Equity, Access, and Affordability
   { type: "statement", text: "Let’s look at who should benefit from various mobility options in the city." },
-  { type: "question", text: "Public transit fares should be subsidized to ensure affordability for all residents.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Public transit fares should be subsidised to ensure affordability for all residents.", axis1: 1, axis2: 0 },
   { type: "question", text: "Investments should focus on improving private road infrastructure equally for all neighborhoods.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "New mobility technologies should be accessible and affordable, not just premium options.", axis1: 0.5, axis2: 1 },
   { type: "question", text: "It’s acceptable for premium or luxury transport options to have higher prices.", axis1: -0.5, axis2: 0 },
-  { type: "question", text: "Mobility solutions must prioritize accessibility for people with disabilities and the elderly.", axis1: 1, axis2: 0 },
+  { type: "question", text: "Mobility solutions must prioritise accessibility for people with disabilities and the elderly.", axis1: 1, axis2: 0 },
 
   // Theme 6 – Urban Lifestyle and Public Space
   { type: "statement", text: "Finally, some propositions about how transport fits with life in the city." },
