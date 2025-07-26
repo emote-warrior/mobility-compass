@@ -11,18 +11,31 @@
   <div class="container">
     <h1>Mobility Compass</h1>
     <p>Please respond honestly to the following statements using the scale provided. Your result will appear at the end.</p>
-    
+
+    <!-- Progress bar -->
+    <div id="progress-container">
+      <div id="progress-bar">0%</div>
+    </div>
+
     <form id="surveyForm">
+      <!-- Intro Text -->
       <div id="intro-text" style="margin-bottom: 30px;">
         <p><strong>This is not a traditional survey with straightforward questions.</strong> Instead, you will see a series of statements — called propositions — about urban mobility and city transport.</p>
         <p>Some statements may seem bold or unclear on purpose. Their role is to capture your honest reactions and attitudes about different ideas related to getting around in cities.</p>
         <p><em>Please respond based on your immediate thoughts and feelings. There are no right or wrong answers, and your responses are anonymous and not recorded.</em></p>
       </div>
+
+      <!-- Questions are dynamically inserted here by script.js -->
+
+      <!-- Submit Button -->
+      <button type="submit" id="submitBtn">See My Result</button>
+
+      <!-- Inline error display -->
+      <div id="error-box" style="color: red; font-weight: bold; margin-top: 10px;"></div>
     </form>
 
-    <button type="submit" id="submitBtn">See My Result</button>
-
-    <div id="results">
+    <!-- Results -->
+    <div id="results" style="display: none;">
       <h2>Your Mobility Compass Result</h2>
       <canvas id="mobilityChart" width="400" height="400"></canvas>
       <p id="interpretation"></p>
