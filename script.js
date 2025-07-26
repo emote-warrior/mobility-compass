@@ -44,18 +44,18 @@ const questions = [
   { type: "question", text: "Cities should expand pedestrian-only zones and reduce car access downtown.", axis1: 1, axis2: 0 },
   { type: "question", text: "Streets should primarily accommodate cars to support commerce and delivery needs.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "Smart street designs balancing multiple uses and technologies improve urban life.", axis1: 0, axis2: 1 },
-  { type: "question", text: "Too much focus on non-car transportation modes can make public spaces less functional or attractive.", axis1: -0.5, axis2: -1 },
+  { type: "question", text: "Prioritizing emerging mobility modes may compromise other uses of public space.", axis1: -0.5, axis2: -1 },
   { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 1, axis2: 0 }
 ];
-
-const maxAxis1 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis1 * 2), 0);
-const maxAxis2 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis2 * 2), 0);
 
 const form = document.getElementById("surveyForm");
 const resultsDiv = document.getElementById("results");
 const interpretationEl = document.getElementById("interpretation");
 const progressBar = document.getElementById("progress-bar");
 const errorBox = document.getElementById("error-box");
+
+const maxAxis1 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis1 * 2), 0);
+const maxAxis2 = questions.filter(q => q.type === "question").reduce((sum, q) => sum + Math.abs(q.axis2 * 2), 0);
 
 function renderQuestions() {
   let questionIndex = 0;
@@ -89,7 +89,13 @@ function renderQuestions() {
     form.appendChild(div);
   });
 
-  // Add change listener for progress tracking
+  // Add submit button at the end
+  const submitDiv = document.createElement("div");
+  submitDiv.style.textAlign = "center";
+  submitDiv.style.marginTop = "40px";
+  submitDiv.innerHTML = `<button type="submit" id="submitBtn">See My Result</button>`;
+  form.appendChild(submitDiv);
+
   document.querySelectorAll('input[type="radio"]').forEach(input => {
     input.addEventListener('change', updateProgress);
   });
@@ -148,24 +154,16 @@ function plotCompass(x, y) {
       }]
     },
     options: {
-      plugins: {
-        legend: { display: false }
-      },
+      plugins: { legend: { display: false }},
       scales: {
         x: {
           min: -1, max: 1,
-          title: {
-            display: true,
-            text: 'Private Vehicle <-> Public/Active Transit'
-          },
+          title: { display: true, text: 'Private Vehicle <-> Public/Active Transit' },
           grid: { color: '#ddd' }
         },
         y: {
           min: -1, max: 1,
-          title: {
-            display: true,
-            text: 'Tradition <-> Innovation'
-          },
+          title: { display: true, text: 'Tradition <-> Innovation' },
           grid: { color: '#ddd' }
         }
       }
@@ -173,7 +171,7 @@ function plotCompass(x, y) {
   });
 }
 
-document.getElementById("submitBtn").addEventListener("click", function(e) {
+document.addEventListener("submit", function (e) {
   e.preventDefault();
   errorBox.innerHTML = "";
 
@@ -189,6 +187,17 @@ document.getElementById("submitBtn").addEventListener("click", function(e) {
   resultsDiv.style.display = "block";
   interpretationEl.innerHTML = getInterpretation(scores.axis1, scores.axis2);
   plotCompass(scores.axis1, scores.axis2);
+});
+
+// Sticky progress bar logic
+window.addEventListener("scroll", function () {
+  const progress = document.getElementById("progress-container");
+  const formTop = document.getElementById("surveyForm").offsetTop;
+  if (window.scrollY >= formTop) {
+    progress.classList.add("sticky");
+  } else {
+    progress.classList.remove("sticky");
+  }
 });
 
 renderQuestions();
