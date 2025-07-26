@@ -44,7 +44,7 @@ const questions = [
   { type: "question", text: "Cities should expand pedestrian-only zones and reduce car access downtown.", axis1: 1, axis2: 0 },
   { type: "question", text: "Streets should primarily accommodate cars to support commerce and delivery needs.", axis1: -1, axis2: -0.5 },
   { type: "question", text: "Smart street designs balancing multiple uses and technologies improve urban life.", axis1: 0, axis2: 1 },
-  { type: "question", text: "Prioritizing emerging mobility modes may compromise other uses of public space.", axis1: -0.5, axis2: -1 },
+  { type: "question", text: "Too much focus on non-car transportation modes can make public spaces less functional or attractive.", axis1: -0.5, axis2: -1 },
   { type: "question", text: "Cycling infrastructure improves the livability and attractiveness of neighborhoods.", axis1: 1, axis2: 0 }
 ];
 
@@ -59,13 +59,7 @@ const maxAxis2 = questions.filter(q => q.type === "question").reduce((sum, q) =>
 
 function renderQuestions() {
   let questionIndex = 0;
-  const scaleLabels = [
-    "Strongly Disagree",
-    "Disagree",
-    "Neutral",
-    "Agree",
-    "Strongly Agree"
-  ];
+  const scaleLabels = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"];
 
   questions.forEach((item) => {
     const div = document.createElement("div");
@@ -89,7 +83,6 @@ function renderQuestions() {
     form.appendChild(div);
   });
 
-  // Add submit button at the end
   const submitDiv = document.createElement("div");
   submitDiv.style.textAlign = "center";
   submitDiv.style.marginTop = "40px";
@@ -132,14 +125,7 @@ function scoreSurvey() {
 }
 
 function getInterpretation(x, y) {
-  const horizontal = x > 0 ? "Public/Active Transit-Oriented" : "Private Vehicle-Centric";
-  const vertical = y > 0 ? "Innovation-Oriented" : "Tradition-Preferring";
-  let quadrantLabel = "";
-  if (x > 0 && y > 0) quadrantLabel = "Progressive Transit Supporter";
-  else if (x < 0 && y > 0) quadrantLabel = "Tech-Savvy Car Advocate";
-  else if (x > 0 && y < 0) quadrantLabel = "Traditional Transit Believer";
-  else if (x < 0 && y < 0) quadrantLabel = "Conventional Car-Oriented Thinker";
-  return `You lean toward <strong>${horizontal}</strong> and <strong>${vertical}</strong> mobility thinking.<br><br>Your quadrant: <strong>${quadrantLabel}</strong>`;
+  return `<strong>Your Scores</strong><br>Transit Orientation Score: ${x.toFixed(2)}<br>Innovation Orientation Score: ${y.toFixed(2)}`;
 }
 
 function plotCompass(x, y) {
@@ -147,24 +133,49 @@ function plotCompass(x, y) {
   new Chart(ctx, {
     type: 'scatter',
     data: {
-      datasets: [{
-        label: 'Your Position',
-        data: [{ x, y }],
-        backgroundColor: 'blue'
-      }]
+      datasets: [
+        {
+          label: 'Your Position',
+          data: [{ x, y }],
+          backgroundColor: 'blue',
+          pointRadius: 6
+        },
+        {
+          label: 'Quadrants',
+          data: [
+            { x: -0.5, y: -0.5 },
+            { x: 0.5, y: -0.5 },
+            { x: -0.5, y: 0.5 },
+            { x: 0.5, y: 0.5 }
+          ],
+          pointBackgroundColor: ['#ffe6e6', '#e6f3ff', '#e6ffe6', '#fff5e6'],
+          pointRadius: 200,
+          hitRadius: 0,
+          hoverRadius: 0,
+          showLine: false
+        }
+      ]
     },
     options: {
-      plugins: { legend: { display: false }},
+      plugins: { legend: { display: false } },
       scales: {
         x: {
           min: -1, max: 1,
-          title: { display: true, text: 'Private Vehicle <-> Public/Active Transit' },
-          grid: { color: '#ddd' }
+          title: { display: true, text: 'Private Vehicle ←→ Public/Active Transit' },
+          ticks: { stepSize: 0.5 },
+          grid: {
+            color: '#999',
+            lineWidth: ctx => (ctx.tick.value === 0 ? 2 : 1)
+          }
         },
         y: {
           min: -1, max: 1,
-          title: { display: true, text: 'Tradition <-> Innovation' },
-          grid: { color: '#ddd' }
+          title: { display: true, text: 'Tradition ←→ Innovation' },
+          ticks: { stepSize: 0.5 },
+          grid: {
+            color: '#999',
+            lineWidth: ctx => (ctx.tick.value === 0 ? 2 : 1)
+          }
         }
       }
     }
@@ -189,7 +200,7 @@ document.addEventListener("submit", function (e) {
   plotCompass(scores.axis1, scores.axis2);
 });
 
-// Sticky progress bar logic
+// Sticky progress bar
 window.addEventListener("scroll", function () {
   const progress = document.getElementById("progress-container");
   const formTop = document.getElementById("surveyForm").offsetTop;
